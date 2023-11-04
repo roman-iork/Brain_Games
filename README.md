@@ -6,3 +6,5 @@
 [![asciicast](https://asciinema.org/a/wtBYkrmR588gsH6o1fm1Bc2AK.svg)](https://asciinema.org/a/wtBYkrmR588gsH6o1fm1Bc2AK)
 ##### The link to asciinema record Hexlet *Brain Games* **Step 6**
 [![asciicast](https://asciinema.org/a/rSMvKjndUwtpFWZFtG63AUtbd.svg)](https://asciinema.org/a/rSMvKjndUwtpFWZFtG63AUtbd)
+##### The link to asciinema record Hexlet *Brain Games* **Step 7**
+[![asciicast](https://asciinema.org/a/fon58PYJqzcbrKnz1t8D4aM9Z.svg)](https://asciinema.org/a/fon58PYJqzcbrKnz1t8D4aM9Z)
