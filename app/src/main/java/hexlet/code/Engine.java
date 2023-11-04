@@ -20,10 +20,6 @@ public class Engine {
         Random generator = new Random();
         return generator.nextInt(upLimit);
     }
-    //public static String input() {
-    //    Scanner scanner = new Scanner(System.in);
-    //    return scanner.next();
-    //}
 
     public static boolean getAnswerCheckResult(String rightAnswer) {
         boolean resultWin;

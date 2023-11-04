@@ -8,15 +8,15 @@ public class ProgressionGame {
         String userName = Engine.greeting();
 
         //Describing a task
-        Engine.describeTask("What is the result of the expression?");
+        Engine.describeTask("What number is missing in the progression?");
 
         //Three rounds or quit
         boolean resultWin = true;
         for (int i = 0; i < 3; i++) {
             //forming a question
-            int minLengthOfprogression = 5;
+            int minLengthOfProgression = 5;
             int randomLengthOfProgression = Engine.random(5);
-            int lengthOfProgression = minLengthOfprogression + randomLengthOfProgression;
+            int lengthOfProgression = minLengthOfProgression + randomLengthOfProgression;
             String[] progression = new String[lengthOfProgression];
             int toAvoidZero = 1;
             int startOfProgression = Engine.random(15) + toAvoidZero;
