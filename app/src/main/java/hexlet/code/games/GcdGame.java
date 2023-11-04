@@ -8,14 +8,17 @@ public class GcdGame {
         String userName = Engine.greeting();
 
         //Describing a task
-        boolean resultWin = true;
         Engine.describeTask("Find the greatest common divisor of given numbers.");
 
         //Three rounds or quit
-        for (int i = 0; i < 3; i++) {
+        boolean resultWin = true;
+        int numberOfRounds = 3;
+        for (int i = 0; i < numberOfRounds; i++) {
             //forming a question
-            int firstNum = Engine.random(100) + 1;
-            int secondNum = Engine.random(100) + 1;
+            int randomUpBound = 100;
+            int toAvoidZero = 1;
+            int firstNum = Engine.random(randomUpBound) + toAvoidZero;
+            int secondNum = Engine.random(randomUpBound) + toAvoidZero;
             String expressionToAsk = firstNum + " " + secondNum;
             System.out.println("Question: " + expressionToAsk);
 
@@ -31,7 +34,8 @@ public class GcdGame {
             if (maxOfTwo % minOfTwo == 0) {
                 gcd = minOfTwo;
             } else {
-                potentialGcd = minOfTwo / 2;
+                int makeHalf = 2;
+                potentialGcd = minOfTwo / makeHalf;
             }
             while (gcd == 0) {
                 if ((minOfTwo % potentialGcd == 0) & (maxOfTwo % potentialGcd == 0)) {

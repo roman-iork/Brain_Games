@@ -12,12 +12,14 @@ public class CalcGame {
 
         //Three rounds or quit
         boolean resultWin = true;
-        for (int i = 0; i < 3; i++) {
+        int numberOfRounds = 3;
+        for (int i = 0; i < numberOfRounds; i++) {
             //forming a question
-            int firstNum = Engine.random(100);
-            int secondNum = Engine.random(100);
+            int randomUpBound = 100;
+            int firstNum = Engine.random(randomUpBound);
+            int secondNum = Engine.random(randomUpBound);
             char[] operators = {'+', '-', '*'};
-            char currOperator = operators[Engine.random(3)];
+            char currOperator = operators[Engine.random(operators.length)];
             String expressionToAsk = firstNum + " " + currOperator + " " + secondNum;
             System.out.println("Question: " + expressionToAsk);
 

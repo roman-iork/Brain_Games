@@ -12,9 +12,11 @@ public class PrimeGame {
 
         //Three rounds or quit
         boolean resultWin = true;
-        for (int i = 0; i < 3; i++) {
+        int numberOfRounds = 3;
+        for (int i = 0; i < numberOfRounds; i++) {
             //forming a question
-            int numToAsk = Engine.random(100);
+            int randomUpBound = 100;
+            int numToAsk = Engine.random(randomUpBound);
             System.out.println("Question: " + numToAsk);
 
             //discovering the right answer

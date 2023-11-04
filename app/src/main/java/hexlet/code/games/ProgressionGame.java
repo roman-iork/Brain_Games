@@ -12,15 +12,19 @@ public class ProgressionGame {
 
         //Three rounds or quit
         boolean resultWin = true;
-        for (int i = 0; i < 3; i++) {
+        int numberOfRounds = 3;
+        for (int i = 0; i < numberOfRounds; i++) {
             //forming a question
             int minLengthOfProgression = 5;
-            int randomLengthOfProgression = Engine.random(5);
+            int maxIncrementOfProgressionLength = 5;
+            int randomLengthOfProgression = Engine.random(maxIncrementOfProgressionLength);
             int lengthOfProgression = minLengthOfProgression + randomLengthOfProgression;
             String[] progression = new String[lengthOfProgression];
             int toAvoidZero = 1;
-            int startOfProgression = Engine.random(15) + toAvoidZero;
-            int step = Engine.random(10) + toAvoidZero;
+            int upperBoundForStart = 15;
+            int upperBoundForStep = 10;
+            int startOfProgression = Engine.random(upperBoundForStart) + toAvoidZero;
+            int step = Engine.random(upperBoundForStep) + toAvoidZero;
             int previousNumber = startOfProgression;
             progression[0] = String.valueOf(startOfProgression);
             for (int j = 1; j < lengthOfProgression; j++) {
