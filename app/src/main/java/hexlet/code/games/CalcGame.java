@@ -7,25 +7,22 @@ public class CalcGame {
         //Greeting
         String userName = Engine.greeting();
 
-        //Setting variables
-        String expressionToAsk;
-        char[] operators = {'+', '-', '*'};
-        String rightAnswer;
-        boolean resultWin = true;
-
         //Describing a task
         Engine.describeTask("What is the result of the expression?");
 
         //Three rounds or quit
+        boolean resultWin = true;
         for (int i = 0; i < 3; i++) {
             //forming a question
             int firstNum = Engine.random(100);
             int secondNum = Engine.random(100);
+            char[] operators = {'+', '-', '*'};
             char currOperator = operators[Engine.random(3)];
-            expressionToAsk = firstNum + " " + currOperator + " " + secondNum;
+            String expressionToAsk = firstNum + " " + currOperator + " " + secondNum;
             System.out.println("Question: " + expressionToAsk);
 
             //discovering the right answer
+            String rightAnswer;
             if (currOperator == '+') {
                 rightAnswer = String.valueOf(firstNum + secondNum);
             } else if (currOperator == '-') {

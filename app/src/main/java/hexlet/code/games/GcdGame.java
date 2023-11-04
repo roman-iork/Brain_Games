@@ -7,13 +7,8 @@ public class GcdGame {
         //Greeting
         String userName = Engine.greeting();
 
-        //Setting variables
-        String expressionToAsk;
-        String rightAnswer;
-        boolean resultWin = true;
-
-
         //Describing a task
+        boolean resultWin = true;
         Engine.describeTask("Find the greatest common divisor of given numbers.");
 
         //Three rounds or quit
@@ -21,9 +16,8 @@ public class GcdGame {
             //forming a question
             int firstNum = Engine.random(100) + 1;
             int secondNum = Engine.random(100) + 1;
-            expressionToAsk = firstNum + " " + secondNum;
+            String expressionToAsk = firstNum + " " + secondNum;
             System.out.println("Question: " + expressionToAsk);
-
 
             //discovering the right answer
             int minOfTwo = firstNum;
@@ -47,7 +41,7 @@ public class GcdGame {
                     potentialGcd -= 1;
                 }
             }
-            rightAnswer = String.valueOf(gcd);
+            String rightAnswer = String.valueOf(gcd);
 
             //getting the answer, comparing values, announcing results
             resultWin = Engine.getAnswerCheckResult(rightAnswer);
