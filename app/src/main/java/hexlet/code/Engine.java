@@ -39,10 +39,10 @@ public class Engine {
 
     public static boolean even() {
         boolean resultWin = true;
-        int numberOfRounds = 3;
+        final int numberOfRounds = 3;
         for (int i = 0; i < numberOfRounds; i++) {
             //forming a question
-            int randomUpBound = 100;
+            final int randomUpBound = 100;
             int numToAsk = Engine.random(randomUpBound);
             System.out.println("Question: " + numToAsk);
 
@@ -65,10 +65,10 @@ public class Engine {
 
     public static boolean calc() {
         boolean resultWin = true;
-        int numberOfRounds = 3;
+        final int numberOfRounds = 3;
         for (int i = 0; i < numberOfRounds; i++) {
             //forming a question
-            int randomUpBound = 100;
+            final int randomUpBound = 100;
             int firstNum = Engine.random(randomUpBound);
             int secondNum = Engine.random(randomUpBound);
             char[] operators = {'+', '-', '*'};
@@ -96,11 +96,11 @@ public class Engine {
 
     public static boolean gcd() {
         boolean resultWin = true;
-        int numberOfRounds = 3;
+        final int numberOfRounds = 3;
         for (int i = 0; i < numberOfRounds; i++) {
             //forming a question
-            int randomUpBound = 100;
-            int toAvoidZero = 1;
+            final int randomUpBound = 100;
+            final int toAvoidZero = 1;
             int firstNum = Engine.random(randomUpBound) + toAvoidZero;
             int secondNum = Engine.random(randomUpBound) + toAvoidZero;
             String expressionToAsk = firstNum + " " + secondNum;
@@ -118,7 +118,7 @@ public class Engine {
             if (maxOfTwo % minOfTwo == 0) {
                 gcd = minOfTwo;
             } else {
-                int makeHalf = 2;
+                final int makeHalf = 2;
                 potentialGcd = minOfTwo / makeHalf;
             }
             while (gcd == 0) {
@@ -142,17 +142,17 @@ public class Engine {
 
     public static boolean progression() {
         boolean resultWin = true;
-        int numberOfRounds = 3;
+        final int numberOfRounds = 3;
         for (int i = 0; i < numberOfRounds; i++) {
             //forming a question
-            int minLengthOfProgression = 5;
-            int maxIncrementOfProgressionLength = 5;
+            final int minLengthOfProgression = 5;
+            final int maxIncrementOfProgressionLength = 5;
             int randomLengthOfProgression = Engine.random(maxIncrementOfProgressionLength);
             int lengthOfProgression = minLengthOfProgression + randomLengthOfProgression;
             String[] progression = new String[lengthOfProgression];
-            int toAvoidZero = 1;
-            int upperBoundForStart = 15;
-            int upperBoundForStep = 10;
+            final int toAvoidZero = 1;
+            final int upperBoundForStart = 15;
+            final int upperBoundForStep = 10;
             int startOfProgression = Engine.random(upperBoundForStart) + toAvoidZero;
             int step = Engine.random(upperBoundForStep) + toAvoidZero;
             int previousNumber = startOfProgression;
@@ -186,16 +186,16 @@ public class Engine {
 
     public static boolean prime() {
         boolean resultWin = true;
-        int numberOfRounds = 3;
+        final int numberOfRounds = 3;
         for (int i = 0; i < numberOfRounds; i++) {
             //forming a question
-            int randomUpBound = 100;
+            final int randomUpBound = 100;
             int numToAsk = Engine.random(randomUpBound);
             System.out.println("Question: " + numToAsk);
 
             //discovering the right answer
             String rightAnswer = "yes";
-            int makeHalf = 2;
+            final int makeHalf = 2;
             int divider = numToAsk / makeHalf;
             for (int j = divider; j > 1; j--) {
                 if ((numToAsk == 0) | (numToAsk == 1) | (numToAsk % j == 0)) {
