@@ -122,7 +122,7 @@ public class Engine {
                 potentialGcd = minOfTwo / makeHalf;
             }
             while (gcd == 0) {
-                if ((minOfTwo % potentialGcd == 0) & (maxOfTwo % potentialGcd == 0)) {
+                if ((minOfTwo % potentialGcd == 0) && (maxOfTwo % potentialGcd == 0)) {
                     gcd = potentialGcd;
                     break;
                 } else {
@@ -189,7 +189,7 @@ public class Engine {
         final int numberOfRounds = 3;
         for (int i = 0; i < numberOfRounds; i++) {
             //forming a question
-            final int randomUpBound = 100;
+            final int randomUpBound = 2;
             int numToAsk = Engine.random(randomUpBound);
             System.out.println("Question: " + numToAsk);
 
@@ -197,8 +197,11 @@ public class Engine {
             String rightAnswer = "yes";
             final int makeHalf = 2;
             int divider = numToAsk / makeHalf;
+            if ((numToAsk == 0) || (numToAsk == 1)) {
+                rightAnswer = "no";
+            }
             for (int j = divider; j > 1; j--) {
-                if ((numToAsk == 0) | (numToAsk == 1) | (numToAsk % j == 0)) {
+                if (numToAsk % j == 0) {
                     rightAnswer = "no";
                     break;
                 }
