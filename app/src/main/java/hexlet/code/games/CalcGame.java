@@ -4,49 +4,63 @@ import java.util.Random;
 import hexlet.code.Engine;
 
 public class CalcGame {
+    private static final Random GENERATOR = new Random();
+    private static final int UPPER_BOUND = 100;
+    private static final int REQUIRED_UPPER_BOUND = 3;
 
-    public static String formQuestion(int firstNum, int secondNum, char currOperator) {
-        return firstNum + " " + currOperator + " " + secondNum;
+    public static int[] gettingNumbers() {
+        int[] numbers = new int[6];
+        for (int i = 0; i < 6; i++) {
+            numbers[i] = GENERATOR.nextInt(UPPER_BOUND);
+        }
+        return numbers;
     }
 
-    public static String discoverRightAnswer(int firstNum, int secondNum, char currOperator) {
-        String rightAnswer;
-        if (currOperator == '+') {
-            rightAnswer = String.valueOf(firstNum + secondNum);
-        } else if (currOperator == '-') {
-            rightAnswer = String.valueOf(firstNum - secondNum);
-        } else {
-            rightAnswer = String.valueOf(firstNum * secondNum);
+    public static char[] gettingOperators() {
+        char[] operatorsToChose = {'+', '-', '*'};
+        char[] operators = new char[3];
+        for (int j = 0; j < 3; j++) {
+            operators[j] = operatorsToChose[GENERATOR.nextInt(REQUIRED_UPPER_BOUND)];
         }
-        return rightAnswer;
+        return operators;
+    }
+
+    public static int[] calculatingResults(int[] numbers, char[] operators) {
+        int[] results = new int[3];
+        int increaser = 0;
+        for (int k = 0; k < 3; k++) {
+            if (operators[k] == '+') {
+                results[k] = numbers[k + increaser] + numbers[k + increaser + 1];
+                increaser++;
+            } else if (operators[k] == '-') {
+                results[k] = numbers[k + increaser] - numbers[k + increaser + 1];
+                increaser++;
+            } else {
+                results[k] = numbers[k + increaser] * numbers[k + increaser + 1];
+                increaser++;
+            }
+        }
+        return results;
     }
 
     public static void run() {
-        //Greeting
         String task = "What is the result of the expression?";
-        String userName = Engine.greetingAndTask(task);
 
-        //Three rounds or quit before
-        boolean resultWin = true;
-        final int numberOfRounds = 3;
-        for (int i = 0; i < numberOfRounds; i++) {
-            //forming a question
-            Random generator = new Random();
-            final int upBound = 100;
-            int firstNum = generator.nextInt(upBound);
-            int secondNum = generator.nextInt(upBound);
-            char[] operators = {'+', '-', '*'};
-            char currOperator = operators[generator.nextInt(operators.length)];
-            String expressionToAsk = formQuestion(firstNum, secondNum, currOperator);
-            //discovering the right answer
-            String rightAnswer = discoverRightAnswer(firstNum, secondNum, currOperator);
-            //Starting Engine
-            resultWin = Engine.run(expressionToAsk, rightAnswer);
-            if (!resultWin) {
-                break;
-            }
+        int[] numbers = gettingNumbers();
+        char[] operators = gettingOperators();
+        String[] questionsInString = new String[3];
+        int count = 0;
+        for (int l = 0; l < 3; l++) {
+            questionsInString[l] = numbers[l + count] + " " + operators[l] + " " + numbers[l + count + 1];
+            count++;
         }
-        //Congratulations or another try
-        Engine.resulting(resultWin, userName);
+
+        int[] rightAnswersInInteger = calculatingResults(numbers, operators);
+        String[] rightAnswersInStrings = new String[3];
+        for (int m = 0; m < 3; m++) {
+            rightAnswersInStrings[m] = String.valueOf(rightAnswersInInteger[m]);
+        }
+
+        Engine.run(task, questionsInString, rightAnswersInStrings);
     }
 }
