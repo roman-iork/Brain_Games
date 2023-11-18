@@ -8,10 +8,11 @@ public class GcdGame {
     private static final int TO_AVOID_ZERO = 1;
     private static final int MAKE_HALF = 2;
     private static final int UPPER_BOUND = 100;
+    private static final int NUMBER_OF_ROUNDS = 3;
 
     public static int[][] gettingNumbers() {
-        int[][] pairs = new int[3][2];
-        for (int i = 0; i < 3; i++) {
+        int[][] pairs = new int[NUMBER_OF_ROUNDS][2];
+        for (int i = 0; i < pairs.length; i++) {
             for (int j = 0; j < 2; j++) {
                 int number = GENERATOR.nextInt(UPPER_BOUND) + TO_AVOID_ZERO;
                 pairs[i][j] = number;
@@ -21,16 +22,12 @@ public class GcdGame {
     }
 
     public static int[] calculatingGcd(int[][] numbers) {
-        int[] gcdNumbers = new int[3];
-        for (int i = 0; i < 3; i++) {
+        int[] gcdNumbers = new int[NUMBER_OF_ROUNDS];
+        for (int i = 0; i < gcdNumbers.length; i++) {
             int first = numbers[i][0];
             int second = numbers[i][1];
-            int minOfTwo = first;
-            int maxOfTwo = second;
-            if (first > second) {
-                minOfTwo = second;
-                maxOfTwo = first;
-            }
+            int minOfTwo = Math.min(first, second);
+            int maxOfTwo = Math.max(first, second);
             int gcd = 0;
             int potentialGcd = minOfTwo;
             if (maxOfTwo % minOfTwo == 0) {
@@ -55,17 +52,17 @@ public class GcdGame {
         String task = "Find the greatest common divisor of given numbers.";
 
         int[][] numbers = gettingNumbers();
-        String[] questionsInString = new String[3];
-        for (int i = 0; i < 3; i++) {
+        String[] questionsInString = new String[NUMBER_OF_ROUNDS];
+        for (int i = 0; i < questionsInString.length; i++) {
             questionsInString[i] = numbers[i][0] + " " + numbers[i][1];
         }
 
         int[] rightAnswersInInteger = calculatingGcd(numbers);
-        String[] rightAnswersInString = new String[3];
-        for (int j = 0; j < 3; j++) {
-            rightAnswersInString[j] = String.valueOf(rightAnswersInInteger[j]);
+        String[] rightAnswersInString = new String[NUMBER_OF_ROUNDS];
+        for (int i = 0; i < rightAnswersInString.length; i++) {
+            rightAnswersInString[i] = String.valueOf(rightAnswersInInteger[i]);
         }
 
-        Engine.run(task, questionsInString, rightAnswersInString);
+        Engine.run(task, NUMBER_OF_ROUNDS, questionsInString, rightAnswersInString);
     }
 }

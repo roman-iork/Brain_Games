@@ -15,13 +15,13 @@ public class Engine {
         return name;
     }
 
-    public static void run(String task, String[] question, String[] rightAnswer) {
+    public static void run(String task, int numberOfRounds, String[] question, String[] rightAnswer) {
         //greeting
         name = hello();
         //print task
         System.out.println(task);
         //three rounds or fewer
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < numberOfRounds; i++) {
             //questioning
             System.out.println("Question: " + question[i]);
             //get answer
