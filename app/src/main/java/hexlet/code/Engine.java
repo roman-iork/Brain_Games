@@ -7,17 +7,12 @@ public class Engine {
     private static String name;
     private static boolean win = true;
 
-    public static String hello() {
+    public static void run(String task, int numberOfRounds, String[] question, String[] rightAnswer) {
+        //greeting
         System.out.println("Welcome to the Brain Games!");
         System.out.print("May I have your name? ");
         name = SCANNER.next();
         System.out.println("Hello, " + name + "!");
-        return name;
-    }
-
-    public static void run(String task, int numberOfRounds, String[] question, String[] rightAnswer) {
-        //greeting
-        name = hello();
         //print task
         System.out.println(task);
         //three rounds or fewer
