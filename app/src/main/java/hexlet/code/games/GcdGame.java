@@ -1,68 +1,43 @@
 package hexlet.code.games;
 
-import java.util.Random;
+import hexlet.code.Utils;
 import hexlet.code.Engine;
 
 public class GcdGame {
-    private static final Random GENERATOR = new Random();
-    private static final int TO_AVOID_ZERO = 1;
-    private static final int MAKE_HALF = 2;
-    private static final int UPPER_BOUND = 100;
-    private static final int NUMBER_OF_ROUNDS = 3;
 
-    public static int[][] gettingNumbers() {
-        int[][] pairs = new int[NUMBER_OF_ROUNDS][2];
-        for (int i = 0; i < pairs.length; i++) {
-            for (int j = 0; j < 2; j++) {
-                int number = GENERATOR.nextInt(UPPER_BOUND) + TO_AVOID_ZERO;
-                pairs[i][j] = number;
-            }
+    public static int calculatingGcd(int firstNum, int secondNum) {
+        int minOfTwo = Math.min(firstNum, secondNum);
+        int maxOfTwo = Math.max(firstNum, secondNum);
+        int gcd = 0;
+        int potentialGcd = minOfTwo;
+        if (maxOfTwo % minOfTwo == 0) {
+            gcd = minOfTwo;
+        } else {
+            potentialGcd = minOfTwo / 2;
         }
-        return pairs;
-    }
-
-    public static int[] calculatingGcd(int[][] numbers) {
-        int[] gcdNumbers = new int[NUMBER_OF_ROUNDS];
-        for (int i = 0; i < gcdNumbers.length; i++) {
-            int first = numbers[i][0];
-            int second = numbers[i][1];
-            int minOfTwo = Math.min(first, second);
-            int maxOfTwo = Math.max(first, second);
-            int gcd = 0;
-            int potentialGcd = minOfTwo;
-            if (maxOfTwo % minOfTwo == 0) {
-                gcd = minOfTwo;
+        while (gcd == 0) {
+            if ((minOfTwo % potentialGcd == 0) & (maxOfTwo % potentialGcd == 0)) {
+                gcd = potentialGcd;
+                break;
             } else {
-                potentialGcd = minOfTwo / MAKE_HALF;
+                potentialGcd -= 1;
             }
-            while (gcd == 0) {
-                if ((minOfTwo % potentialGcd == 0) & (maxOfTwo % potentialGcd == 0)) {
-                    gcd = potentialGcd;
-                    break;
-                } else {
-                    potentialGcd -= 1;
-                }
-            }
-            gcdNumbers[i] = gcd;
         }
-        return gcdNumbers;
+        return gcd;
     }
 
-    public static void run() {
+    public static void run(int numberOfRounds) {
         String task = "Find the greatest common divisor of given numbers.";
 
-        int[][] numbers = gettingNumbers();
-        String[] questionsInString = new String[NUMBER_OF_ROUNDS];
-        for (int i = 0; i < questionsInString.length; i++) {
-            questionsInString[i] = numbers[i][0] + " " + numbers[i][1];
+        String[][] questionsAndAnswers = new String[numberOfRounds][2];
+        for (int i = 0; i < numberOfRounds; i++) {
+            int firstNum = Utils.getRandomInt(1, 100);
+            int secondNum = Utils.getRandomInt(1, 100);
+            int gcd = calculatingGcd(firstNum, secondNum);
+            questionsAndAnswers[i][0] = firstNum + " " + secondNum;
+            questionsAndAnswers[i][1] = String.valueOf(gcd);
         }
 
-        int[] rightAnswersInInteger = calculatingGcd(numbers);
-        String[] rightAnswersInString = new String[NUMBER_OF_ROUNDS];
-        for (int i = 0; i < rightAnswersInString.length; i++) {
-            rightAnswersInString[i] = String.valueOf(rightAnswersInInteger[i]);
-        }
-
-        Engine.run(task, NUMBER_OF_ROUNDS, questionsInString, rightAnswersInString);
+        Engine.run(task, numberOfRounds, questionsAndAnswers);
     }
 }

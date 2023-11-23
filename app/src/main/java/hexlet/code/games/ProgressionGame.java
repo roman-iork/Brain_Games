@@ -1,97 +1,53 @@
 package hexlet.code.games;
 
-import java.util.Random;
+import hexlet.code.Utils;
 import hexlet.code.Engine;
 
 public class ProgressionGame {
-    private static final Random GENERATOR = new Random();
-    private static final int UPPER_BOUND_FOR_START = 15;
-    private static final int UPPER_BOUND_FOR_STEP = 10;
-    private static final int TO_AVOID_ZERO = 1;
-    private static final int MIN_LENGTH_OF_PROGRESSION = 5;
-    private static final int MAX_INCREMENT_OF_PROGRESSION_LENGTH = 5;
     private static final int NUMBER_OF_PARAMETERS = 3;
-    private static final int NUMBER_OF_ROUNDS = 3;
 
-    public static int[][] preparingParameters() {
-        int[][] parameters = new int[NUMBER_OF_ROUNDS][NUMBER_OF_PARAMETERS];
-        for (int i = 0; i < parameters[0].length; i++) {
-            int randomLengthOfProgression = GENERATOR.nextInt(MAX_INCREMENT_OF_PROGRESSION_LENGTH);
-            int lengthOfProgression = MIN_LENGTH_OF_PROGRESSION + randomLengthOfProgression;
-            parameters[i][0] = lengthOfProgression;
-            int startOfProgression = GENERATOR.nextInt(UPPER_BOUND_FOR_START) + TO_AVOID_ZERO;
-            parameters[i][1] = startOfProgression;
-            int step = GENERATOR.nextInt(UPPER_BOUND_FOR_STEP) + TO_AVOID_ZERO;
-            parameters[i][2] = step;
-        }
+    public static int[] preparingParameters(int numberOfParameters) {
+        int[] parameters = new int[numberOfParameters];
+        int lengthOfProgression = Utils.getRandomInt(5, 10);
+        parameters[0] = lengthOfProgression;
+        int startOfProgression = Utils.getRandomInt(1, 15);
+        parameters[1] = startOfProgression;
+        int step = Utils.getRandomInt(1, 10);
+        parameters[2] = step;
         return parameters;
     }
 
-    public static int[][] gettingProgressions(int[][] parameters) {
-        int[][] progressions = {{}, {}, {}};
-        for (int i = 0; i < NUMBER_OF_ROUNDS; i++) {
-            int[] currentParameters = parameters[i];
-            int length = currentParameters[0];
-            int start = currentParameters[1];
-            int step = currentParameters[2];
-            int[] progression = new int[length];
-            int previousNumber = start;
-            progression[0] = start;
-            for (int j = 1; j < length; j++) {
-                progression[j] = previousNumber + step;
-                previousNumber += step;
-            }
-            progressions[i] = progression;
+    public static int[] gettingProgression(int[] parameters) {
+        int length = parameters[0];
+        int start = parameters[1];
+        int step = parameters[2];
+        int[] progression = new int[length];
+        progression[0] = start;
+        for (int i = 1; i < length; i++) {
+            progression[i] = progression[i - 1] + step;
         }
-        return progressions;
+        return progression;
     }
 
-    public static int[] discoveringTwoPointsPositions(int[][] progression) {
-        int[] twoPointsPositions = new int[NUMBER_OF_ROUNDS];
-        for (int i = 0; i < twoPointsPositions.length; i++) {
-            int length = progression[i].length;
-            int twoPointsPosition = GENERATOR.nextInt(length);
-            twoPointsPositions[i] = twoPointsPosition;
-        }
-        return twoPointsPositions;
-    }
-
-    public static int[] calculatingMissingNumbers(int[][] integerProgression, int[] twoPointsPosition) {
-        int[] missingNumbers = new int[NUMBER_OF_ROUNDS];
-        for (int i = 0; i < missingNumbers.length; i++) {
-            int position = twoPointsPosition[i];
-            int reply = integerProgression[i][position];
-            missingNumbers[i] = reply;
-        }
-        return missingNumbers;
-    }
-
-    public static void run() {
+    public static void run(int numberOfRounds) {
         String task = "What number is missing in the progression?";
 
-        int[][] progressionsInInteger = gettingProgressions(preparingParameters());
-        int[] twoPointsPosition = discoveringTwoPointsPositions(progressionsInInteger);
-        String[] questionsInString = new String[NUMBER_OF_ROUNDS];
-        for (int i = 0; i < questionsInString.length; i++) {
-            int length = progressionsInInteger[i].length;
-            int currentTwoPointsPosition = twoPointsPosition[i];
-            String currentProgression = "";
-            for (int j = 0; j < length; j++) {
-                if (j != currentTwoPointsPosition) {
-                    currentProgression += progressionsInInteger[i][j] + " ";
+        String[][] questionsAndAnswers = new String[numberOfRounds][2];
+        for (int i = 0; i < numberOfRounds; i++) {
+            int[] progression = gettingProgression(preparingParameters(NUMBER_OF_PARAMETERS));
+            int twoPointsPosition = Utils.getRandomInt(progression.length);
+            String question = "";
+            for (int j = 0; j < progression.length; j++) {
+                if (j != twoPointsPosition) {
+                    question += progression[j] + " ";
                 } else {
-                    currentProgression += ".." + " ";
+                    question += ".. ";
                 }
             }
-            questionsInString[i] = currentProgression;
+            questionsAndAnswers[i][0] = question;
+            questionsAndAnswers[i][1] = String.valueOf(progression[twoPointsPosition]);
         }
 
-        int[] rightAnswersInIntegers = calculatingMissingNumbers(progressionsInInteger, twoPointsPosition);
-        String[] rightAnswersInString = new String[NUMBER_OF_ROUNDS];
-        for (int i = 0; i < rightAnswersInString.length; i++) {
-            rightAnswersInString[i] = String.valueOf(rightAnswersInIntegers[i]);
-        }
-
-        Engine.run(task, NUMBER_OF_ROUNDS, questionsInString, rightAnswersInString);
+        Engine.run(task, numberOfRounds, questionsAndAnswers);
     }
 }
