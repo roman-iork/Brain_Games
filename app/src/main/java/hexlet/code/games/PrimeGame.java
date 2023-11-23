@@ -25,7 +25,8 @@ public class PrimeGame {
 
         String[][] questionsAndAnswers = new String[numberOfRounds][2];
         for (int i = 0; i < numberOfRounds; i++) {
-            int question = Utils.getRandomInt(100);
+            final int upperBound = 100;
+            int question = Utils.getRandomInt(upperBound);
             questionsAndAnswers[i][0] = String.valueOf(question);
             boolean primeOrNot = isPrime(question);
             if (primeOrNot) {

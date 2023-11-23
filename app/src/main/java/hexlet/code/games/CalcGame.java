@@ -27,8 +27,9 @@ public class CalcGame {
 
         String[][] questionsAndAnswers = new String[numberOfRounds][2];
         for (int i = 0; i < numberOfRounds; i++) {
-            int firstNum = Utils.getRandomInt(100);
-            int secondNum = Utils.getRandomInt(100);
+            final int upperBound = 100;
+            int firstNum = Utils.getRandomInt(upperBound);
+            int secondNum = Utils.getRandomInt(upperBound);
             char operator = gettingOperator();
             int result = calculatingResult(firstNum, secondNum, operator);
             questionsAndAnswers[i][0] = firstNum + " " + operator + " " + secondNum;

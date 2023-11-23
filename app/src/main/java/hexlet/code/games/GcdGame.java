@@ -31,8 +31,9 @@ public class GcdGame {
 
         String[][] questionsAndAnswers = new String[numberOfRounds][2];
         for (int i = 0; i < numberOfRounds; i++) {
-            int firstNum = Utils.getRandomInt(1, 100);
-            int secondNum = Utils.getRandomInt(1, 100);
+            final int upperBound = 100;
+            int firstNum = Utils.getRandomInt(1, upperBound);
+            int secondNum = Utils.getRandomInt(1, upperBound);
             int gcd = calculatingGcd(firstNum, secondNum);
             questionsAndAnswers[i][0] = firstNum + " " + secondNum;
             questionsAndAnswers[i][1] = String.valueOf(gcd);

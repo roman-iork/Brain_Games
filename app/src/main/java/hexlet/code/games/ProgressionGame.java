@@ -8,11 +8,13 @@ public class ProgressionGame {
 
     public static int[] preparingParameters(int numberOfParameters) {
         int[] parameters = new int[numberOfParameters];
-        int lengthOfProgression = Utils.getRandomInt(5, 10);
+        final int lowerBound = 5;
+        final int upperBound = 10;
+        int lengthOfProgression = Utils.getRandomInt(lowerBound, upperBound);
         parameters[0] = lengthOfProgression;
-        int startOfProgression = Utils.getRandomInt(1, 15);
+        int startOfProgression = Utils.getRandomInt(1, upperBound);
         parameters[1] = startOfProgression;
-        int step = Utils.getRandomInt(1, 10);
+        int step = Utils.getRandomInt(1, upperBound);
         parameters[2] = step;
         return parameters;
     }
