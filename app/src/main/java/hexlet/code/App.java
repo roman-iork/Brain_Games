@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args) {
-        final int numberOfRounds = 3;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the game number and press Enter."
                 + "\n1 - Greet"
@@ -28,22 +27,22 @@ public class App {
                 Cli.greeting();
                 break;
             case "2":
-                EvenGame.run(numberOfRounds);
+                EvenGame.run();
                 break;
             case "3":
-                CalcGame.run(numberOfRounds);
+                CalcGame.run();
                 break;
             case "4":
-                GcdGame.run(numberOfRounds);
+                GcdGame.run();
                 break;
             case "5":
-                ProgressionGame.run(numberOfRounds);
+                ProgressionGame.run();
                 break;
             case "6":
-                PrimeGame.run(numberOfRounds);
+                PrimeGame.run();
                 break;
             default:
         }
-        scanner.close();
+        //scanner.close();
     }
 }

@@ -21,10 +21,24 @@ public class PrimeGame {
         return numberIsPrime;
     }
 
-    public static void run(int numberOfRounds) {
-        String task = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+    public static String[] getQuestionAndAnswer() {
+        var questionsAndAnswers = new String[2];
+        int question = Utils.getRandomInt(UPPER_BOUND);
+        questionsAndAnswers[0] = String.valueOf(question);
+        boolean primeOrNot = isPrime(question);
+        if (primeOrNot) {
+            questionsAndAnswers[1] = "yes";
+        } else {
+            questionsAndAnswers[1] = "no";
+        }
+        return questionsAndAnswers;
+    }
 
-        String[][] questionsAndAnswers = new String[numberOfRounds][2];
+    public static void run() {
+        String task = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+        String game = "prime";
+
+        /*String[][] questionsAndAnswers = new String[numberOfRounds][2];
         for (int i = 0; i < numberOfRounds; i++) {
             int question = Utils.getRandomInt(UPPER_BOUND);
             questionsAndAnswers[i][0] = String.valueOf(question);
@@ -34,8 +48,8 @@ public class PrimeGame {
             } else {
                 questionsAndAnswers[i][1] = "no";
             }
-        }
+        }*/
 
-        Engine.run(task, numberOfRounds, questionsAndAnswers);
+        Engine.run(task, game);
     }
 }

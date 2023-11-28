@@ -18,22 +18,23 @@ public class ProgressionGame {
         return progression;
     }
 
-    public static void run(int numberOfRounds) {
+    public static String[] getQuestionAndAnswer() {
+        var questionsAndAnswers = new String[2];
+        int length = Utils.getRandomInt(MIN, MAX);
+        int start = Utils.getRandomInt(1, MAX);
+        int step = Utils.getRandomInt(1, MAX);
+        String[] progression = gettingProgression(length, start, step);
+        int twoPointsPosition = Utils.getRandomInt(progression.length);
+        String answer = progression[twoPointsPosition];
+        progression[twoPointsPosition] = "..";
+        questionsAndAnswers[0] = String.join(" ", progression);
+        questionsAndAnswers[1] = answer;
+        return questionsAndAnswers;
+    }
+
+    public static void run() {
         String task = "What number is missing in the progression?";
-
-        String[][] questionsAndAnswers = new String[numberOfRounds][2];
-        for (int i = 0; i < numberOfRounds; i++) {
-            int length = Utils.getRandomInt(MIN, MAX);
-            int start = Utils.getRandomInt(1, MAX);
-            int step = Utils.getRandomInt(1, MAX);
-            String[] progression = gettingProgression(length, start, step);
-            int twoPointsPosition = Utils.getRandomInt(progression.length);
-            String answer = progression[twoPointsPosition];
-            progression[twoPointsPosition] = "..";
-            questionsAndAnswers[i][0] = String.join(" ", progression);
-            questionsAndAnswers[i][1] = answer;
-        }
-
-        Engine.run(task, numberOfRounds, questionsAndAnswers);
+        String game = "progression";
+        Engine.run(task, game);
     }
 }

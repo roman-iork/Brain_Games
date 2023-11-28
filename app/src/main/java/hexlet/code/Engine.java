@@ -1,10 +1,40 @@
 package hexlet.code;
 
+import hexlet.code.games.CalcGame;
+import hexlet.code.games.EvenGame;
+import hexlet.code.games.GcdGame;
+import hexlet.code.games.PrimeGame;
+import hexlet.code.games.ProgressionGame;
+
 import java.util.Scanner;
 
 public class Engine {
+    private static final int NUMBER_OF_ROUNDS = 3;
 
-    public static void run(String task, int numberOfRounds, String[][] questionsAndAnswers) {
+    public static String[] getQuestionAndAnswer(String game) {
+        String[] questionsAndAnswers = new String[2];
+        switch (game) {
+            case "even":
+                questionsAndAnswers = EvenGame.getQuestionAndAnswer();
+                break;
+            case "calc":
+                questionsAndAnswers = CalcGame.getQuestionAndAnswer();
+                break;
+            case "gcd":
+                questionsAndAnswers = GcdGame.getQuestionAndAnswer();
+                break;
+            case "prime":
+                questionsAndAnswers = PrimeGame.getQuestionAndAnswer();
+                break;
+            case "progression":
+                questionsAndAnswers = ProgressionGame.getQuestionAndAnswer();
+                break;
+            default:
+        }
+        return questionsAndAnswers;
+    }
+
+    public static void run(String task, String game) {
         Scanner scanner = new Scanner(System.in);
         //greeting
         System.out.println("Welcome to the Brain Games!");
@@ -15,9 +45,10 @@ public class Engine {
         System.out.println(task);
         //three rounds or fewer
         boolean win = true;
-        for (int i = 0; i < numberOfRounds; i++) {
-            String question = questionsAndAnswers[i][0];
-            String rightAnswer = questionsAndAnswers[i][1];
+        for (int i = 0; i < NUMBER_OF_ROUNDS; i++) {
+            String[] questionsAndAnswers = getQuestionAndAnswer(game);
+            String question = questionsAndAnswers[0];
+            String rightAnswer = questionsAndAnswers[1];
             //questioning
             System.out.println("Question: " + question);
             //get answer

@@ -29,19 +29,20 @@ public class CalcGame {
         return result;
     }
 
-    public static void run(int numberOfRounds) {
+    public static String[] getQuestionAndAnswer() {
+        var questionsAndAnswers = new String[2];
+        int firstNum = Utils.getRandomInt(UPPER_BOUND);
+        int secondNum = Utils.getRandomInt(UPPER_BOUND);
+        char operator = gettingOperator();
+        int result = calculatingResult(firstNum, secondNum, operator);
+        questionsAndAnswers[0] = firstNum + " " + operator + " " + secondNum;
+        questionsAndAnswers[1] = String.valueOf(result);
+        return questionsAndAnswers;
+    }
+
+    public static void run() {
         String task = "What is the result of the expression?";
-
-        String[][] questionsAndAnswers = new String[numberOfRounds][2];
-        for (int i = 0; i < numberOfRounds; i++) {
-            int firstNum = Utils.getRandomInt(UPPER_BOUND);
-            int secondNum = Utils.getRandomInt(UPPER_BOUND);
-            char operator = gettingOperator();
-            int result = calculatingResult(firstNum, secondNum, operator);
-            questionsAndAnswers[i][0] = firstNum + " " + operator + " " + secondNum;
-            questionsAndAnswers[i][1] = String.valueOf(result);
-        }
-
-        Engine.run(task, numberOfRounds, questionsAndAnswers);
+        String game = "calc";
+        Engine.run(task, game);
     }
 }

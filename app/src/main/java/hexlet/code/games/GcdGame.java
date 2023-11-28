@@ -27,18 +27,19 @@ public class GcdGame {
         return gcd;
     }
 
-    public static void run(int numberOfRounds) {
+    public static String[] getQuestionAndAnswer() {
+        var questionsAndAnswers = new String[2];
+        int firstNum = Utils.getRandomInt(1, UPPER_BOUND);
+        int secondNum = Utils.getRandomInt(1, UPPER_BOUND);
+        int gcd = calculatingGcd(firstNum, secondNum);
+        questionsAndAnswers[0] = firstNum + " " + secondNum;
+        questionsAndAnswers[1] = String.valueOf(gcd);
+        return questionsAndAnswers;
+    }
+
+    public static void run() {
         String task = "Find the greatest common divisor of given numbers.";
-
-        String[][] questionsAndAnswers = new String[numberOfRounds][2];
-        for (int i = 0; i < numberOfRounds; i++) {
-            int firstNum = Utils.getRandomInt(1, UPPER_BOUND);
-            int secondNum = Utils.getRandomInt(1, UPPER_BOUND);
-            int gcd = calculatingGcd(firstNum, secondNum);
-            questionsAndAnswers[i][0] = firstNum + " " + secondNum;
-            questionsAndAnswers[i][1] = String.valueOf(gcd);
-        }
-
-        Engine.run(task, numberOfRounds, questionsAndAnswers);
+        String game = "gcd";
+        Engine.run(task, game);
     }
 }

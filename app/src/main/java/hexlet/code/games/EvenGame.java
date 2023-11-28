@@ -10,20 +10,21 @@ public class EvenGame {
         return number % 2 == 0;
     }
 
-    public static void run(int numberOfRounds) {
-        String task = "Answer 'yes' if the number is even, otherwise answer 'no'.";
-
-        String[][] questionsAndAnswers = new String[numberOfRounds][2];
-        for (int i = 0; i < numberOfRounds; i++) {
-            int questionNumber = Utils.getRandomInt(UPPER_BOUND);
-            questionsAndAnswers[i][0] = String.valueOf(questionNumber);
-            if (isEven(questionNumber)) {
-                questionsAndAnswers[i][1] = "yes";
-            } else {
-                questionsAndAnswers[i][1] = "no";
-            }
+    public static String[] getQuestionAndAnswer() {
+        var questionsAndAnswers = new String[2];
+        int questionNumber = Utils.getRandomInt(UPPER_BOUND);
+        questionsAndAnswers[0] = String.valueOf(questionNumber);
+        if (isEven(questionNumber)) {
+            questionsAndAnswers[1] = "yes";
+        } else {
+            questionsAndAnswers[1] = "no";
         }
+        return questionsAndAnswers;
+    }
 
-        Engine.run(task, numberOfRounds, questionsAndAnswers);
+    public static void run() {
+        String task = "Answer 'yes' if the number is even, otherwise answer 'no'.";
+        String game = "even";
+        Engine.run(task, game);
     }
 }
