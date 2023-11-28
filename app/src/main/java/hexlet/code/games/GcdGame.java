@@ -4,6 +4,7 @@ import hexlet.code.Utils;
 import hexlet.code.Engine;
 
 public class GcdGame {
+    private static final int UPPER_BOUND = 100;
 
     public static int calculatingGcd(int firstNum, int secondNum) {
         int minOfTwo = Math.min(firstNum, secondNum);
@@ -31,9 +32,8 @@ public class GcdGame {
 
         String[][] questionsAndAnswers = new String[numberOfRounds][2];
         for (int i = 0; i < numberOfRounds; i++) {
-            final int upperBound = 100;
-            int firstNum = Utils.getRandomInt(1, upperBound);
-            int secondNum = Utils.getRandomInt(1, upperBound);
+            int firstNum = Utils.getRandomInt(1, UPPER_BOUND);
+            int secondNum = Utils.getRandomInt(1, UPPER_BOUND);
             int gcd = calculatingGcd(firstNum, secondNum);
             questionsAndAnswers[i][0] = firstNum + " " + secondNum;
             questionsAndAnswers[i][1] = String.valueOf(gcd);

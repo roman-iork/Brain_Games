@@ -4,20 +4,27 @@ import hexlet.code.Engine;
 import hexlet.code.Utils;
 
 public class CalcGame {
+    private static final int UPPER_BOUND = 100;
 
     public static char gettingOperator() {
         char[] operatorsToChose = {'+', '-', '*'};
         return operatorsToChose[Utils.getRandomInt(operatorsToChose.length)];
     }
 
-    public static int calculatingResult(int firstNum, int secondNum, char operator) {
+    public static Integer calculatingResult(int firstNum, int secondNum, char operator) {
         int result;
-        if (operator == '+') {
-            result = firstNum + secondNum;
-        } else if (operator == '-') {
-            result = firstNum - secondNum;
-        } else {
-            result = firstNum * secondNum;
+        switch (operator) {
+            case '+':
+                result = firstNum + secondNum;
+                break;
+            case '-':
+                result = firstNum - secondNum;
+                break;
+            case '*':
+                result = firstNum * secondNum;
+                break;
+            default:
+                return null;
         }
         return result;
     }
@@ -27,9 +34,8 @@ public class CalcGame {
 
         String[][] questionsAndAnswers = new String[numberOfRounds][2];
         for (int i = 0; i < numberOfRounds; i++) {
-            final int upperBound = 100;
-            int firstNum = Utils.getRandomInt(upperBound);
-            int secondNum = Utils.getRandomInt(upperBound);
+            int firstNum = Utils.getRandomInt(UPPER_BOUND);
+            int secondNum = Utils.getRandomInt(UPPER_BOUND);
             char operator = gettingOperator();
             int result = calculatingResult(firstNum, secondNum, operator);
             questionsAndAnswers[i][0] = firstNum + " " + operator + " " + secondNum;

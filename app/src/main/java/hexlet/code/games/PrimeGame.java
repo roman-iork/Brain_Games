@@ -4,6 +4,7 @@ import hexlet.code.Utils;
 import hexlet.code.Engine;
 
 public class PrimeGame {
+    private static final int UPPER_BOUND = 100;
 
     public static boolean isPrime(int number) {
         boolean numberIsPrime = true;
@@ -25,8 +26,7 @@ public class PrimeGame {
 
         String[][] questionsAndAnswers = new String[numberOfRounds][2];
         for (int i = 0; i < numberOfRounds; i++) {
-            final int upperBound = 100;
-            int question = Utils.getRandomInt(upperBound);
+            int question = Utils.getRandomInt(UPPER_BOUND);
             questionsAndAnswers[i][0] = String.valueOf(question);
             boolean primeOrNot = isPrime(question);
             if (primeOrNot) {
