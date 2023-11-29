@@ -42,7 +42,7 @@ public class App {
                 PrimeGame.run();
                 break;
             default:
+                System.out.println("Between 0 and 6 inclusive please.");
         }
-        //scanner.close();
     }
 }

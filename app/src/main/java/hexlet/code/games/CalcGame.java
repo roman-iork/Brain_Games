@@ -5,6 +5,8 @@ import hexlet.code.Utils;
 
 public class CalcGame {
     private static final int UPPER_BOUND = 100;
+    private static final String TASK = "What is the result of the expression?";
+    private static final String GAME = "calc";
 
     public static char gettingOperator() {
         char[] operatorsToChose = {'+', '-', '*'};
@@ -41,8 +43,6 @@ public class CalcGame {
     }
 
     public static void run() {
-        String task = "What is the result of the expression?";
-        String game = "calc";
-        Engine.run(task, game);
+        Engine.run(TASK, GAME);
     }
 }

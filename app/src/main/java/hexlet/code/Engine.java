@@ -30,6 +30,7 @@ public class Engine {
                 questionsAndAnswers = ProgressionGame.getQuestionAndAnswer();
                 break;
             default:
+                return null;
         }
         return questionsAndAnswers;
     }
@@ -37,8 +38,7 @@ public class Engine {
     public static void run(String task, String game) {
         Scanner scanner = new Scanner(System.in);
         //greeting
-        System.out.println("Welcome to the Brain Games!");
-        System.out.print("May I have your name? ");
+        System.out.print("Welcome to the Brain Games!" + "\nMay I have your name? ");
         String name = scanner.next();
         System.out.println("Hello, " + name + "!");
         //print task

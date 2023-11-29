@@ -5,6 +5,8 @@ import hexlet.code.Engine;
 
 public class EvenGame {
     private static final int UPPER_BOUND = 100;
+    private static final String TASK = "Answer 'yes' if the number is even, otherwise answer 'no'.";
+    private static final String GAME = "even";
 
     public static boolean isEven(int number) {
         return number % 2 == 0;
@@ -23,8 +25,6 @@ public class EvenGame {
     }
 
     public static void run() {
-        String task = "Answer 'yes' if the number is even, otherwise answer 'no'.";
-        String game = "even";
-        Engine.run(task, game);
+        Engine.run(TASK, GAME);
     }
 }

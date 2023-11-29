@@ -5,17 +5,17 @@ import hexlet.code.Engine;
 
 public class GcdGame {
     private static final int UPPER_BOUND = 100;
+    private static final String TASK = "Find the greatest common divisor of given numbers.";
+    private static final String GAME = "gcd";
 
     public static int calculatingGcd(int firstNum, int secondNum) {
         int minOfTwo = Math.min(firstNum, secondNum);
         int maxOfTwo = Math.max(firstNum, secondNum);
-        int gcd = 0;
-        int potentialGcd = minOfTwo;
         if (maxOfTwo % minOfTwo == 0) {
-            gcd = minOfTwo;
-        } else {
-            potentialGcd = minOfTwo / 2;
+            return minOfTwo;
         }
+        int gcd = 0;
+        int potentialGcd = minOfTwo / 2;
         while (gcd == 0) {
             if ((minOfTwo % potentialGcd == 0) & (maxOfTwo % potentialGcd == 0)) {
                 gcd = potentialGcd;
@@ -38,8 +38,6 @@ public class GcdGame {
     }
 
     public static void run() {
-        String task = "Find the greatest common divisor of given numbers.";
-        String game = "gcd";
-        Engine.run(task, game);
+        Engine.run(TASK, GAME);
     }
 }
