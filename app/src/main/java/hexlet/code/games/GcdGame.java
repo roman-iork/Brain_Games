@@ -13,17 +13,21 @@ public class GcdGame {
         return firstNum % gcd == 0 && secondNum % gcd == 0 ? gcd : calculatingGcd(firstNum, secondNum, decrement);
     }
 
-    public static String[] getQuestionAndAnswer() {
-        var questionsAndAnswers = new String[2];
-        int firstNum = Utils.getRandomInt(1, UPPER_BOUND);
-        int secondNum = Utils.getRandomInt(1, UPPER_BOUND);
-        int gcd = calculatingGcd(firstNum, secondNum, 0);
-        questionsAndAnswers[0] = firstNum + " " + secondNum;
-        questionsAndAnswers[1] = String.valueOf(gcd);
+    public static String[][] getQuestionsAndAnswers() {
+        String[][] questionsAndAnswers = new String[Engine.NUMBER_OF_ROUNDS][2];
+        for (int i = 0; i < Engine.NUMBER_OF_ROUNDS; i++) {
+            var questionsAndAnswersPair = new String[2];
+            int firstNum = Utils.getRandomInt(1, UPPER_BOUND);
+            int secondNum = Utils.getRandomInt(1, UPPER_BOUND);
+            int gcd = calculatingGcd(firstNum, secondNum, 0);
+            questionsAndAnswersPair[0] = firstNum + " " + secondNum;
+            questionsAndAnswersPair[1] = String.valueOf(gcd);
+            questionsAndAnswers[i] = questionsAndAnswersPair;
+        }
         return questionsAndAnswers;
     }
 
     public static void run() {
-        Engine.run(getQuestionAndAnswer(), TASK);
+        Engine.run(getQuestionsAndAnswers(), TASK);
     }
 }

@@ -3,9 +3,9 @@ package hexlet.code;
 import java.util.Scanner;
 
 public class Engine {
-    private static final int NUMBER_OF_ROUNDS = 3;
+    public static final int NUMBER_OF_ROUNDS = 3;
 
-    public static void run(String[] questionAndAnswer, String task) {
+    public static void run(String[][] questionsAndAnswers, String task) {
         Scanner scanner = new Scanner(System.in);
         //greeting
         System.out.print("Welcome to the Brain Games!" + "\nMay I have your name? ");
@@ -16,9 +16,8 @@ public class Engine {
         //three rounds or fewer
         boolean win = true;
         for (int i = 0; i < NUMBER_OF_ROUNDS; i++) {
-            //String[] questionsAndAnswers = questionAndAnswer;
-            String question = questionAndAnswer[0];
-            String rightAnswer = questionAndAnswer[1];
+            String question = questionsAndAnswers[i][0];
+            String rightAnswer = questionsAndAnswers[i][1];
             //questioning
             System.out.println("Question: " + question);
             //get answer

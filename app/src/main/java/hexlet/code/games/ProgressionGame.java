@@ -19,21 +19,25 @@ public class ProgressionGame {
         return progression;
     }
 
-    public static String[] getQuestionAndAnswer() {
-        var questionsAndAnswers = new String[2];
-        int length = Utils.getRandomInt(MIN, MAX);
-        int start = Utils.getRandomInt(1, MAX);
-        int step = Utils.getRandomInt(1, MAX);
-        String[] progression = gettingProgression(length, start, step);
-        int twoPointsPosition = Utils.getRandomInt(progression.length);
-        String answer = progression[twoPointsPosition];
-        progression[twoPointsPosition] = "..";
-        questionsAndAnswers[0] = String.join(" ", progression);
-        questionsAndAnswers[1] = answer;
+    public static String[][] getQuestionsAndAnswers() {
+        String[][] questionsAndAnswers = new String[Engine.NUMBER_OF_ROUNDS][2];
+        for (int i = 0; i < Engine.NUMBER_OF_ROUNDS; i++) {
+            var questionsAndAnswersPair = new String[2];
+            int length = Utils.getRandomInt(MIN, MAX);
+            int start = Utils.getRandomInt(1, MAX);
+            int step = Utils.getRandomInt(1, MAX);
+            String[] progression = gettingProgression(length, start, step);
+            int twoPointsPosition = Utils.getRandomInt(progression.length);
+            String answer = progression[twoPointsPosition];
+            progression[twoPointsPosition] = "..";
+            questionsAndAnswersPair[0] = String.join(" ", progression);
+            questionsAndAnswersPair[1] = answer;
+            questionsAndAnswers[i] = questionsAndAnswersPair;
+        }
         return questionsAndAnswers;
     }
 
     public static void run() {
-        Engine.run(getQuestionAndAnswer(), TASK);
+        Engine.run(getQuestionsAndAnswers(), TASK);
     }
 }

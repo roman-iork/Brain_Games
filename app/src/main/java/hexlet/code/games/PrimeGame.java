@@ -22,20 +22,24 @@ public class PrimeGame {
         return numberIsPrime;
     }
 
-    public static String[] getQuestionAndAnswer() {
-        var questionsAndAnswers = new String[2];
-        int question = Utils.getRandomInt(UPPER_BOUND);
-        questionsAndAnswers[0] = String.valueOf(question);
-        boolean primeOrNot = isPrime(question);
-        if (primeOrNot) {
-            questionsAndAnswers[1] = "yes";
-        } else {
-            questionsAndAnswers[1] = "no";
+    public static String[][] getQuestionsAndAnswers() {
+        String[][] questionsAndAnswers = new String[Engine.NUMBER_OF_ROUNDS][2];
+        for (int i = 0; i < Engine.NUMBER_OF_ROUNDS; i++) {
+            var questionsAndAnswersPair = new String[2];
+            int question = Utils.getRandomInt(UPPER_BOUND);
+            questionsAndAnswersPair[0] = String.valueOf(question);
+            boolean primeOrNot = isPrime(question);
+            if (primeOrNot) {
+                questionsAndAnswersPair[1] = "yes";
+            } else {
+                questionsAndAnswersPair[1] = "no";
+            }
+            questionsAndAnswers[i] = questionsAndAnswersPair;
         }
         return questionsAndAnswers;
     }
 
     public static void run() {
-        Engine.run(getQuestionAndAnswer(), TASK);
+        Engine.run(getQuestionsAndAnswers(), TASK);
     }
 }
