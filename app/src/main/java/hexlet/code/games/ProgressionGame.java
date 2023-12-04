@@ -7,7 +7,6 @@ public class ProgressionGame {
     private static final int MIN = 5;
     private static final int MAX = 10;
     private static final String TASK = "What number is missing in the progression?";
-    private static final String GAME = "progression";
 
     public static String[] gettingProgression(int length, int start, int step) {
         var progression = new String[length];
@@ -35,6 +34,6 @@ public class ProgressionGame {
     }
 
     public static void run() {
-        Engine.run(TASK, GAME);
+        Engine.run(getQuestionAndAnswer(), TASK);
     }
 }
