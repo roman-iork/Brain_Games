@@ -4,8 +4,8 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/2fcd653cc993d5428056/maintainability)](https://codeclimate.com/github/roman-iork/java-project-61/maintainability)
 
 #### Brain Games Info
-Is a simple arithmetics game.  
-Offers 5 kinds of games:
+Is a simple cmd game.  
+Offers 5 kinds of arithmetics games:
 - Even
 - Calc
 - GCD (greater common divider)
