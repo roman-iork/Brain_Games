@@ -12,9 +12,9 @@ Offers 5 kinds of arithmetics games:
 - Progression
 - Prime
 
-Three right answers in sequence bring to winning and finish the game.  
+Three right answers in sequence lead to winning and finish the game.  
 In other case the game is lost and also finished.  
-After finishing process should be restarted by startin the code again.  
+After finishing process should be restarted by starting the code again.  
 
 ##### The link to asciinema record Hexlet *Brain Games* **Step 5**
 [![asciicast](https://asciinema.org/a/wtBYkrmR588gsH6o1fm1Bc2AK.svg)](https://asciinema.org/a/wtBYkrmR588gsH6o1fm1Bc2AK)
